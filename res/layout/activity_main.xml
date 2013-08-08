@@ -1,0 +1,74 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        >
+	    <ImageView
+	        android:id="@+id/logo"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:src="@drawable/logo" />"
+	    <TextView
+	        android:id="@+id/user"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentRight="true"
+	        android:text="@string/user" />"
+    </RelativeLayout>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        >
+	    <EditText 
+	        android:id="@+id/search_text"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="4"
+	        />
+	    <Spinner
+	        android:id="@+id/search_condition"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+        	/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/functions"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+        <ImageView 
+            android:id="@+id/storage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/function_bg"
+            android:text="@string/novel_storage"
+            />
+        <ImageView 
+            android:id="@+id/ranking_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/function_bg"
+            android:text="@string/ranking_list"
+            />
+    </RelativeLayout>
+    
+    <ListView
+        android:id="@+id/links"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        />
+        
+</LinearLayout>

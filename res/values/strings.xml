@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">晋江文学城</string>
+    <string name="action_settings">设置</string>
+	<string name="user">游客</string>
+	<string name="yanqing_station">原创言情站</string>
+	<string name="danmei_station">耽美同人站</string>
+	<string name="wanjie_station">完结半价库</string>
+	<string name="account">帐号管理</string>
+	<string name="money">帐务</string>
+	<string name="my_jj">我的晋江</string>
+	<string name="write">写作</string>
+	<string name="read">读书</string>
+	<string name="search">搜索</string>
+	<string name="loading">正在加载...</string>
+	<string name="novel_storage">作品库</string>
+	<string name="ranking_list">排行榜</string>
+</resources>
