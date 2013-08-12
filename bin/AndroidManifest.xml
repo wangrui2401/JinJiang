@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.jinjiang.wxc.MainActivity"
-            android:theme="@android:style/Theme.NoTitleBar"
+            android:theme="@style/AppNoTitleTheme"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,8 +39,11 @@
         </activity>
         <activity android:name="com.jinjiang.wxc.NovelIndexActivity">
         </activity>
-        <activity android:name="com.jinjiang.wxc.ReadActivity">
-        </activity>
+        <activity android:name="com.jinjiang.wxc.ReadActivity"/>
+        <activity android:name="com.jinjiang.wxc.StorageListActivity"/>
+        <activity android:name="com.jinjiang.wxc.NovelsListActivity"/>
+        <activity android:name="com.jinjiang.wxc.RankListActivity"/>
+        <activity android:name="com.jinjiang.wxc.RankActivity"/>
     </application>
 
 </manifest>

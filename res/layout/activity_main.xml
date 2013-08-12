@@ -18,8 +18,8 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_alignParentLeft="true"
-	        android:src="@drawable/logo" />"
-	    <TextView
+	        android:src="@drawable/logo_jj" />"
+	    <Button
 	        android:id="@+id/user"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
@@ -45,30 +45,39 @@
         	/>
     </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/functions"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-        <ImageView 
+        android:layout_height="wrap_content"
+        android:padding="10dp" >
+        <Button 
             android:id="@+id/storage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/function_bg"
+            android:background="@drawable/function_bg"
             android:text="@string/novel_storage"
             />
-        <ImageView 
+        <Button 
             android:id="@+id/ranking_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/function_bg"
+            android:background="@drawable/function_bg"
             android:text="@string/ranking_list"
             />
-    </RelativeLayout>
+        <Button 
+            android:id="@+id/my_jj"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/function_bg"
+            android:text="@string/my_jj"
+            />
+    </LinearLayout>
     
     <ListView
         android:id="@+id/links"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" 
+        android:layout_height="wrap_content"
+        android:padding="10dp" 
         />
         
 </LinearLayout>

@@ -1,70 +1,60 @@
 package com.jinjiang.wxc;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-
-import org.xml.sax.Attributes;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
-import org.xml.sax.ext.DefaultHandler2;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.GridView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnClickListener {
 	private static String JIN_JIANG_WXC = "http://www.jjwxc.net/";
 	private ImageView mLogo;
-	private TextView mUser;
+	private Button mUserBtn;
 	private ListView mLinksList;
+	private Button mStoragesBtn, mRankBtn;
 	private List mLinkData = new ArrayList();
 	private Resources mResources;
-	private int[] mLinkString = {R.string.yanqing_station, R.string.danmei_station, R.string.wanjie_station};
-	private List mFunctionsData = new ArrayList();
-	private int[] mFunctionsString = {R.string.read, R.string.my_jj, 
-			R.string.account, R.string.write, R.string.search, R.string.money};
+	private int[] mLinkString = {R.string.yanqing_channel, R.string.danmei_channel, 
+			R.string.baihe_channel, R.string.nvzun_channel};
+	private String[] mLinkUrl = {
+			"http://www.jjwxc.net/bookbase.php?s_typeid=1&fw=0&ycx=0&xx=1&sd=0&lx=0&fg=0&bq=-1&submit=%B2%E9%D1%AF",
+			"http://www.jjwxc.net/bookbase.php?s_typeid=1&fw=0&ycx=0&xx=2&sd=0&lx=0&fg=0&bq=-1&submit=%B2%E9%D1%AF",
+			"http://www.jjwxc.net/bookbase.php?s_typeid=1&fw=0&ycx=0&xx=3&sd=0&lx=0&fg=0&bq=-1&submit=%B2%E9%D1%AF",
+			"http://www.jjwxc.net/bookbase.php?s_typeid=1&fw=0&ycx=0&xx=4&sd=0&lx=0&fg=0&bq=-1&submit=%B2%E9%D1%AF"
+	};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		initView();
-		setupMainActivity();
 	}
 
 	private void initView() {
 		mLogo = (ImageView)findViewById(R.id.logo);
-		mUser = (TextView)findViewById(R.id.user);
+		mUserBtn = (Button)findViewById(R.id.user);
 		mLinksList = (ListView)findViewById(R.id.links);
+		mStoragesBtn = (Button)findViewById(R.id.storage);
+		mRankBtn = (Button)findViewById(R.id.ranking_list);
+		mStoragesBtn.setOnClickListener(this);
+		mRankBtn.setOnClickListener(this);
+		mUserBtn.setOnClickListener(this);
 		mResources = getResources();
-		setupFunctions();
 		setupLinks();
-	}
-	
-	private void setupFunctions() {
-		for(int i=0; i<mFunctionsString.length; i++) {
-			Map map = new HashMap();
-			map.put("title", mResources.getString(mFunctionsString[i]));
-			mFunctionsData.add(map);
-		}
 	}
 	
 	private void setupLinks() {
@@ -81,34 +71,15 @@ public class MainActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position,
 					long id) {
-				switch(position) {
-				case 0:
-					Intent yanqing = new Intent(MainActivity.this, YQListActivity.class);
-					MainActivity.this.startActivity(yanqing);
-					break;
+				if(position < mLinkUrl.length && position < mLinkString.length) {
+					String url = mLinkUrl[position];
+					Intent intent = new Intent(MainActivity.this, NovelsListActivity.class);
+					intent.putExtra(NovelsListActivity.EXTRA_NOVELS_LIST_URL, url);
+					intent.putExtra(NovelsListActivity.EXTRA_NOVELS_TITLE, mLinkString[position]);
+					MainActivity.this.startActivity(intent);
 				}
 			}
 		});
-	}
-	
-	
-	private void setupMainActivity() {
-		try {
-			URL url = new URL(JIN_JIANG_WXC);
-			InputSource is = new InputSource(url.openStream());
-			SAXParserFactory factory = SAXParserFactory.newInstance();
-			SAXParser parser;
-			parser = factory.newSAXParser();
-			XMLReader xmlReader = parser.getXMLReader();
-			MainActivityHandler handler = new MainActivityHandler();
-			xmlReader.setContentHandler(handler);
-			if(is != null) {
-				xmlReader.parse(is);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
 	}
 	
 	@Override
@@ -118,31 +89,21 @@ public class MainActivity extends Activity {
 		return true;
 	}
 	
-	private class MainActivityHandler extends DefaultHandler2 {
-		
-		@Override
-		public void startDocument() throws SAXException {
-			super.startDocument();
+	@Override
+	public void onClick(View v) {
+		switch(v.getId()) {
+		case R.id.storage:
+			Intent intentStorage = new Intent(this, StorageListActivity.class);
+			this.startActivity(intentStorage);
+			break;
+		case R.id.ranking_list:
+			Intent intentRank = new Intent(this, RankListActivity.class);
+			this.startActivity(intentRank);
+			break;
+		case R.id.user:
+			Intent intentLogin = new Intent(this, TestLoginActivity.class);
+			this.startActivity(intentLogin);
 		}
-		
-		@Override
-		public void endDocument() throws SAXException {
-			super.endDocument();
-		}
-		
-		@Override
-		public void startElement(String uri, String localName, String qName,
-				Attributes attributes) throws SAXException {
-			super.startElement(uri, localName, qName, attributes);
-		}
-		
-		@Override
-		public void endElement(String uri, String localName, String qName)
-				throws SAXException {
-			super.endElement(uri, localName, qName);
-		}
-
 	}
-
 
 }

@@ -4,9 +4,10 @@
     <string name="app_name">晋江文学城</string>
     <string name="action_settings">设置</string>
 	<string name="user">游客</string>
-	<string name="yanqing_station">原创言情站</string>
-	<string name="danmei_station">耽美同人站</string>
-	<string name="wanjie_station">完结半价库</string>
+	<string name="yanqing_channel">言情频道</string>
+	<string name="danmei_channel">耽美频道</string>
+	<string name="baihe_channel">百合频道</string>
+	<string name="nvzun_channel">女尊频道</string>
 	<string name="account">帐号管理</string>
 	<string name="money">帐务</string>
 	<string name="my_jj">我的晋江</string>
@@ -16,4 +17,20 @@
 	<string name="loading">正在加载...</string>
 	<string name="novel_storage">作品库</string>
 	<string name="ranking_list">排行榜</string>
+	
+	<string name="over_novel_storage">完结作品</string>
+	<string name="station_storage">驻站作品</string>
+	<string name="vip_storage">VIP作品</string>
+	<string name="over_count_storage">完结半价</string>
+	<string name="classic_storage">经典文库</string>
+	<string name="free_storage">免费文库</string>
+	
+	<string name="official_yanqing_rank">官推言情榜</string>
+	<string name="official_danmei_rank">官推耽美同人榜</string>
+	<string name="author_rank">新晋作者榜</string>
+	<string name="month_rank">月度排行榜</string>
+	<string name="quarter_rank">季度排行榜</string>
+	<string name="half_year_rank">半年排行榜</string>
+	<string name="score_rank">总分排行榜</string>
+	<string name="words_count_rank">字数排行榜</string>
 </resources>
