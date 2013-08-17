@@ -4,6 +4,7 @@ public class Manager {
 	
 	private static Manager mManager;
 	private String cookie;
+	private String jsid;
 	
 	private Manager() {
 		
@@ -22,5 +23,13 @@ public class Manager {
 	
 	public String getCookie() {
 		return cookie;
+	}
+	
+	public void setJsid(String jsid) {
+		this.jsid = jsid;
+	}
+	
+	public String getJsid() {
+		return jsid;
 	}
 }

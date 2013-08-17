@@ -24,6 +24,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 
+import com.jinjiang.wxc.util.CookieUtil;
 import com.jinjiang.wxc.util.Manager;
 
 public class TestLoginActivity extends Activity {
@@ -31,6 +32,7 @@ public class TestLoginActivity extends Activity {
 	//主要是记录用户会话过程中的一些用户的基本信息
 	private HashMap<String, String> session =new HashMap<String, String>();
 	List<Cookie> cookies;
+	String jsid;
 	
 	@Override 
 	public void onCreate(Bundle savedInstanceState) { 
@@ -49,7 +51,8 @@ public class TestLoginActivity extends Activity {
 		@Override
 		protected void onPostExecute(Boolean result) {
 			if(result) {
-				Intent intent = new Intent(TestLoginActivity.this, TestCookieActivity.class);
+//				Intent intent = new Intent(TestLoginActivity.this, TestCookieActivity.class);
+				Intent intent = new Intent(TestLoginActivity.this, TestVipActivity.class);
 				TestLoginActivity.this.startActivity(intent);
 			}
 			super.onPostExecute(result);
@@ -62,7 +65,8 @@ public class TestLoginActivity extends Activity {
 		HttpPost mPost = new HttpPost("http://my.jjwxc.net/login.php?action=login");
 		
 		List <NameValuePair> nvps = new ArrayList <NameValuePair>();
-        nvps.add(new BasicNameValuePair("loginname", "443912790@qq.com"));
+//        nvps.add(new BasicNameValuePair("loginname", "443912790@qq.com"));
+		nvps.add(new BasicNameValuePair("loginname", "mokena@live.cn"));
         nvps.add(new BasicNameValuePair("loginpassword", "2008010299"));
         try {
 			mPost.setEntity(new UrlEncodedFormEntity(nvps, HTTP.UTF_8));
@@ -87,6 +91,15 @@ public class TestLoginActivity extends Activity {
 		                Cookie cookie = cookies.get(i);
 		                String cookieName = cookie.getName();
 		                String cookieValue = cookie.getValue();
+		                if(cookieName.equals("token")) {
+		                	String[] tokens = CookieUtil.decodeToken(cookieValue);
+		                	if(tokens.length > 0) {
+		                		jsid = tokens[0];	
+		                		Manager.getInstance().setJsid(jsid);
+		                	}
+		                	 
+		                	Log.i("jinjiang", "jsid is " + jsid);
+		                }
 		                if (!TextUtils.isEmpty(cookieName)
 		                         && !TextUtils.isEmpty(cookieValue)) {
 		                    sb.append(cookieName + "=" );

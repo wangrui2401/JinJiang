@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.jinjiang.wxc.util.CookieUtil;
+import com.jinjiang.wxc.util.Manager;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -101,8 +104,14 @@ public class MainActivity extends Activity implements OnClickListener {
 			this.startActivity(intentRank);
 			break;
 		case R.id.user:
-			Intent intentLogin = new Intent(this, TestLoginActivity.class);
-			this.startActivity(intentLogin);
+			if(Manager.getInstance().getCookie() != null) {
+				Intent intent = new Intent(this, TestVipActivity.class);
+				this.startActivity(intent);
+			} else {
+				Intent intentLogin = new Intent(this, TestLoginActivity.class);
+				this.startActivity(intentLogin);	
+			}
+
 		}
 	}
 

@@ -44,6 +44,7 @@
         <activity android:name="com.jinjiang.wxc.NovelsListActivity"/>
         <activity android:name="com.jinjiang.wxc.RankListActivity"/>
         <activity android:name="com.jinjiang.wxc.RankActivity"/>
+        <activity android:name="com.jinjiang.wxc.TestVipActivity"/>
     </application>
 
 </manifest>
